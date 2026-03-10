@@ -1,0 +1,277 @@
+[
+  {
+    "id": 1,
+    "name": "Uber para perros",
+    "description": "Transporta a tu perro a cualquier lugar mientras tú trabajas. El perro nunca llega a tiempo.",
+    "industry": "transport",
+    "funding": 0,
+    "shame_level": 9,
+    "founded": 2023,
+    "founders": [
+      1
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Blockchain para sandwiches",
+    "description": "Cada sandwich está registrado en la blockchain. Nadie sabe por qué.",
+    "industry": "foodtech",
+    "funding": 0,
+    "shame_level": 10,
+    "founded": 2024,
+    "founders": [
+      2
+    ]
+  },
+  {
+    "id": 3,
+    "name": "ExcuseGPT",
+    "description": "AI que genera excusas profesionales para no ir a reuniones. El CEO Elon Musk invirtió $50M (falso).",
+    "industry": "ai",
+    "funding": 50000000,
+    "shame_level": 7,
+    "founded": 2023,
+    "founders": [
+      3
+    ]
+  },
+  {
+    "id": 4,
+    "name": "DeadGram",
+    "description": "Instagram pero solo para gatos que ya murieron. Muy triste, muy popular.",
+    "industry": "social",
+    "funding": 0,
+    "shame_level": 8,
+    "founded": 2022,
+    "founders": [
+      4
+    ]
+  },
+  {
+    "id": 5,
+    "name": "AdFlix",
+    "description": "Netflix pero solo transmite anuncios. 30 minutos de publicidad por episodio.",
+    "industry": "streaming",
+    "funding": 0,
+    "shame_level": 6,
+    "founded": 2023,
+    "founders": [
+      5
+    ]
+  },
+  {
+    "id": 6,
+    "name": "PoopDrop",
+    "description": "Uber pero para recoger y entregar heces de mascotas. Servicio a domicilio.",
+    "industry": "logistics",
+    "funding": 0,
+    "shame_level": 10,
+    "founded": 2024,
+    "founders": [
+      6
+    ]
+  },
+  {
+    "id": 7,
+    "name": "RubikChain",
+    "description": "Blockchain especializada en resolver cubos de Rubik. Token incluido.",
+    "industry": "crypto",
+    "funding": 0,
+    "shame_level": 9,
+    "founded": 2023,
+    "founders": [
+      7
+    ]
+  },
+  {
+    "id": 8,
+    "name": "ClosetDAO",
+    "description": "DAO para decidir qué ponerse cada mañana. Vota con tu wallet.",
+    "industry": "fashion",
+    "funding": 0,
+    "shame_level": 7,
+    "founded": 2024,
+    "founders": [
+      8
+    ]
+  },
+  {
+    "id": 9,
+    "name": "NeighborVerse",
+    "description": "Metaverso para reuniones de vecinos. Ahora puedes discutir el ruido sin salir de casa.",
+    "industry": "realestate",
+    "funding": 0,
+    "shame_level": 8,
+    "founded": 2024,
+    "founders": [
+      9
+    ]
+  },
+  {
+    "id": 10,
+    "name": "BandName.ai",
+    "description": "AI que genera nombres de bandas de rock. El mejor: 'Los Taxistas del Apocalipsis'.",
+    "industry": "ai",
+    "funding": 0,
+    "shame_level": 5,
+    "founded": 2023,
+    "founders": [
+      10
+    ]
+  },
+  {
+    "id": 11,
+    "name": "AquaLux",
+    "description": "Agua de bidón premium a $50 el litro. Es agua normal, pero te sientes rico.",
+    "industry": "consumer",
+    "funding": 0,
+    "shame_level": 6,
+    "founded": 2022,
+    "founders": [
+      11
+    ]
+  },
+  {
+    "id": 12,
+    "name": "BuyTheSun",
+    "description": "Crowdfunding para comprar el sol. Ya recolectamos $0.03.",
+    "industry": "energy",
+    "funding": 0,
+    "shame_level": 10,
+    "founded": 2024,
+    "founders": [
+      12
+    ]
+  },
+  {
+    "id": 13,
+    "name": "PoopTracker",
+    "description": "App para contar cuánto vas al baño. Incluye gráficos y streaks.",
+    "industry": "healthtech",
+    "funding": 0,
+    "shame_level": 4,
+    "founded": 2023,
+    "founders": [
+      13
+    ]
+  },
+  {
+    "id": 14,
+    "name": "SleepIn",
+    "description": "LinkedIn pero para encontrar personas que también quieren dormir todo el día.",
+    "industry": "social",
+    "funding": 0,
+    "shame_level": 7,
+    "founded": 2024,
+    "founders": [
+      14
+    ]
+  },
+  {
+    "id": 15,
+    "name": "RoomieSafe",
+    "description": "Tinder para roommates que prometen no robarte la comida. Verificación de antecedentes incluida.",
+    "industry": "housing",
+    "funding": 0,
+    "shame_level": 6,
+    "founded": 2023,
+    "founders": [
+      15
+    ]
+  },
+  {
+    "id": 16,
+    "name": "ColdDrop",
+    "description": "Drone para delivery de pizza fría. Llega en 45 minutos o te enfriamos el dinero.",
+    "industry": "foodtech",
+    "funding": 0,
+    "shame_level": 5,
+    "founded": 2023,
+    "founders": [
+      16
+    ]
+  },
+  {
+    "id": 17,
+    "name": "ReptilePhone",
+    "description": "Smartphone diseñado para reptiles. Pantalla térmica, interface de lagarto.",
+    "industry": "hardware",
+    "funding": 0,
+    "shame_level": 8,
+    "founded": 2024,
+    "founders": [
+      17
+    ]
+  },
+  {
+    "id": 18,
+    "name": "OxygenBox",
+    "description": "Suscripción mensual para respirar aire limpio. $99/mes. Envasado en cajas.",
+    "industry": "cleantech",
+    "funding": 0,
+    "shame_level": 9,
+    "founded": 2024,
+    "founders": [
+      18
+    ]
+  },
+  {
+    "id": 19,
+    "name": "SkyNet",
+    "description": "VPN especial para conectarse a internet desde el cielo. Para cuando estés en el avión.",
+    "industry": "telecom",
+    "funding": 0,
+    "shame_level": 10,
+    "founded": 2023,
+    "founders": [
+      19
+    ]
+  },
+  {
+    "id": 20,
+    "name": "LinkedFake",
+    "description": "IA para detectar gente fake en LinkedIn. Spoiler: casi todos lo son.",
+    "industry": "ai",
+    "funding": 0,
+    "shame_level": 3,
+    "founded": 2023,
+    "founders": [
+      20
+    ]
+  },
+  {
+    "id": 21,
+    "name": "RockStore",
+    "description": "Amazon pero solo vende piedras. Piedras de río, piedras preciosas, piedras conceptual.",
+    "industry": "e-commerce",
+    "funding": 0,
+    "shame_level": 7,
+    "founded": 2022,
+    "founders": [
+      21
+    ]
+  },
+  {
+    "id": 22,
+    "name": "WhistleHub",
+    "description": "Spotify pero solo de silbidos. 3 usuarios activos, todos son el fundador.",
+    "industry": "music",
+    "funding": 0,
+    "shame_level": 6,
+    "founded": 2024,
+    "founders": [
+      22
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Theranos 2.0",
+    "description": "La secuela que nadie pidió",
+    "industry": "HealthTech",
+    "funding": 0,
+    "shame_level": 8,
+    "founded": 2024,
+    "idea_real": "La secuela que nadie pidió",
+    "founders": []
+  }
+]

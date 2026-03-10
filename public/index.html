@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09090b">
+    <meta name="description" content="Shameful Startups API: La base de datos definitiva de los peores fracasos del mundo tech.">
+    <title>Shameful Startups API</title>
+    
+    <!-- Modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Prism.js for code highlighting -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" /> -->
+</head>
+<body>
+   <!-- Animated Background -->
+    <div class="bg-canvas" aria-hidden="true">
+        <div class="bg-grid"></div>
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container" aria-live="polite" aria-label="Notificaciones"></div>
+
+    <!-- HERO -->
+    <header class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <span class="badge" aria-label="Estado de la API">
+                        <span class="badge-dot" aria-hidden="true"></span>
+                        API v1.0 — En vivo
+                    </span>
+                </div>
+                <h1 class="gradient-text">Shameful Startups API</h1>
+                <p class="subtitle">La base de datos definitiva de los peores fracasos del mundo tech. Aprende de sus errores integrando esta API gratuita en tus aplicaciones.</p>
+                <nav class="hero-actions" aria-label="Acciones principales">
+                    <a href="#quickstart" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        Comenzar ahora
+                    </a>
+                    <a href="/api-docs" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                        Ver Swagger
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Stats -->
+            <div class="hero-stats" id="stats-container" aria-live="polite" aria-busy="true">
+                <article class="stat-card skeleton" aria-hidden="true"></article>
+                <article class="stat-card skeleton" aria-hidden="true"></article>
+                <article class="stat-card skeleton" aria-hidden="true"></article>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- FEATURES -->
+        <section class="features-section" id="features" aria-labelledby="features-title">
+            <div class="container">
+                <h2 id="features-title" class="sr-only">Características principales</h2>
+                <div class="features-grid">
+                    <article class="feature-card animate-on-scroll">
+                        <div class="icon-wrapper" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <h3>100% Gratuita</h3>
+                        <p>Sin tokens, sin límites de tasa, solo puro aprendizaje a través de fracasos ajenos.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="icon-wrapper" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h3>Datos en Tiempo Real</h3>
+                        <p>Actualizaciones constantes con los fiascos más recientes del ecosistema emprendedor.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="icon-wrapper" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <h3>Fácil Integración</h3>
+                        <p>Ejemplos listos para usar con la Fetch API de JavaScript para una integración rápida.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CODE DOCS -->
+        <section id="quickstart" class="code-section" aria-labelledby="quickstart-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="quickstart-title">📚 Documentación Interactiva</h2>
+                    <p>Explora y ejecuta todos los endpoints directamente desde el navegador.</p>
+                </div>
+
+                <!-- Mobile toggle -->
+                <div class="mobile-sidebar-wrapper" id="mobile-sidebar-wrapper" aria-hidden="true">
+                    <button class="sidebar-toggle" id="sidebar-toggle" aria-expanded="false" aria-controls="code-sidebar">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        <span class="sidebar-toggle-text" id="toggle-label">Endpoints — GET /api/startups</span>
+                        <svg class="sidebar-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                </div>
+
+                <div class="code-showcase">
+                    <!-- SIDEBAR -->
+                    <nav class="code-sidebar" id="code-sidebar" aria-label="Endpoints de la API">
+                        <div class="sidebar-header">
+                            <div class="sidebar-search">
+                                <svg class="sidebar-search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                <input type="search" id="endpoint-search" placeholder="Buscar endpoint..." aria-label="Buscar endpoint">
+                            </div>
+                        </div>
+                        <div class="endpoints-list" id="endpoints-list">
+                            <!-- Startups -->
+                            <div class="endpoint-group-section" data-group="startups">
+                                <div class="endpoint-group-title"><span>📁</span> Startups</div>
+                                <ul role="list">
+                                    <li><button class="endpoint-btn active" data-target="get-startups" data-method="GET" data-path="/api/startups"><span class="method get">GET</span><span class="path">/api/startups</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-startups-random" data-method="GET" data-path="/api/startups/random"><span class="method get">GET</span><span class="path">/api/startups/random</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-startups-top-shame" data-method="GET" data-path="/api/startups/top/shame"><span class="method get">GET</span><span class="path">/api/startups/top/shame</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-startups-top-funding" data-method="GET" data-path="/api/startups/top/funding"><span class="method get">GET</span><span class="path">/api/startups/top/funding</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-startups-search" data-method="GET" data-path="/api/startups/search"><span class="method get">GET</span><span class="path">/api/startups/search</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-startup-id" data-method="GET" data-path="/api/startups/:id"><span class="method get">GET</span><span class="path">/api/startups/:id</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="post-startup" data-method="POST" data-path="/api/startups"><span class="method post">POST</span><span class="path">/api/startups</span></button></li>
+                                </ul>
+                            </div>
+                            <!-- Industries -->
+                            <div class="endpoint-group-section" data-group="industries">
+                                <div class="endpoint-group-title"><span>🏭</span> Industries</div>
+                                <ul role="list">
+                                    <li><button class="endpoint-btn" data-target="get-industries" data-method="GET" data-path="/api/industries"><span class="method get">GET</span><span class="path">/api/industries</span></button></li>
+                                </ul>
+                            </div>
+                            <!-- Founders -->
+                            <div class="endpoint-group-section" data-group="founders">
+                                <div class="endpoint-group-title"><span>👥</span> Founders</div>
+                                <ul role="list">
+                                    <li><button class="endpoint-btn" data-target="get-founders" data-method="GET" data-path="/api/founders"><span class="method get">GET</span><span class="path">/api/founders</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-founder-id" data-method="GET" data-path="/api/founders/:id"><span class="method get">GET</span><span class="path">/api/founders/:id</span></button></li>
+                                </ul>
+                            </div>
+                            <!-- Ideas -->
+                            <div class="endpoint-group-section" data-group="ideas">
+                                <div class="endpoint-group-title"><span>💡</span> Ideas</div>
+                                <ul role="list">
+                                    <li><button class="endpoint-btn" data-target="get-ideas" data-method="GET" data-path="/api/ideas"><span class="method get">GET</span><span class="path">/api/ideas</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-idea-id" data-method="GET" data-path="/api/ideas/:id"><span class="method get">GET</span><span class="path">/api/ideas/:id</span></button></li>
+                                </ul>
+                            </div>
+                            <!-- Globales -->
+                            <div class="endpoint-group-section" data-group="global">
+                                <div class="endpoint-group-title"><span>🌐</span> Globales</div>
+                                <ul role="list">
+                                    <li><button class="endpoint-btn" data-target="get-stats" data-method="GET" data-path="/api/stats"><span class="method get">GET</span><span class="path">/api/stats</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-timeline" data-method="GET" data-path="/api/timeline"><span class="method get">GET</span><span class="path">/api/timeline</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-health" data-method="GET" data-path="/api/health"><span class="method get">GET</span><span class="path">/api/health</span></button></li>
+                                    <li><button class="endpoint-btn" data-target="get-api-info" data-method="GET" data-path="/api"><span class="method get">GET</span><span class="path">/api</span></button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <!-- PLAYGROUND -->
+                    <div class="code-playground" role="region" aria-label="Playground de código">
+                        <!-- Language Tabs + Run -->
+                        <div class="playground-header">
+                            <div class="language-tabs" role="tablist" aria-label="Lenguaje de programación">
+                                <span class="lang-tab active">JavaScript (Fetch API)</span>
+                            </div>
+                            <div class="btn-run-wrapper">
+                                <button id="run-btn" class="btn btn-run btn-sm" aria-label="Ejecutar petición">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                    Ejecutar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Endpoint URL bar -->
+                        <div class="endpoint-info-bar" id="endpoint-info-bar" aria-label="Endpoint activo">
+                            <span class="method-badge get" id="info-method">GET</span>
+                            <span class="url-text" id="info-url">http://localhost:3000/api/startups?page=1&limit=10</span>
+                        </div>
+
+                        <!-- Code Block -->
+                        <div class="code-wrapper" role="tabpanel" aria-label="Fragmento de código">
+                            <pre><code id="code-block" class="language-javascript"></code></pre>
+                            <button id="copy-btn" class="copy-btn" aria-label="Copiar código" title="Copiar código">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+
+                        <!-- Response Panel -->
+                        <div class="response-panel" aria-label="Respuesta de la API">
+                            <div class="response-header">
+                                <div class="response-header-left">
+                                    <span>Respuesta</span>
+                                    <span class="status-code status-ok" id="status-badge">200 OK</span>
+                                </div>
+                                <span class="response-time" id="response-time"></span>
+                            </div>
+                            <div class="response-content">
+                                <pre><code id="response-block" class="language-json"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container footer-content">
+            <p>© 2026 <strong>Shameful Startups API</strong> — Creado sin vergüenza para aprender de los peores.</p>
+            <p>Hecho con ❤️ pero sin retornos de inversión.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script> -->
+    <script src="script.js"></script>
+</body>
+</html>

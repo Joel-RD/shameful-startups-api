@@ -1,0 +1,20 @@
+[
+  { "id": 1, "name": "transport", "display_name": "Transporte", "startup_count": 1 },
+  { "id": 2, "name": "foodtech", "display_name": "FoodTech", "startup_count": 2 },
+  { "id": 3, "name": "ai", "display_name": "Inteligencia Artificial", "startup_count": 3 },
+  { "id": 4, "name": "social", "display_name": "Redes Sociales", "startup_count": 2 },
+  { "id": 5, "name": "streaming", "display_name": "Streaming", "startup_count": 1 },
+  { "id": 6, "name": "logistics", "display_name": "Logística", "startup_count": 1 },
+  { "id": 7, "name": "crypto", "display_name": "Criptomonedas", "startup_count": 1 },
+  { "id": 8, "name": "fashion", "display_name": "Moda", "startup_count": 1 },
+  { "id": 9, "name": "realestate", "display_name": "Bienes Raíces", "startup_count": 1 },
+  { "id": 10, "name": "consumer", "display_name": "Consumo", "startup_count": 1 },
+  { "id": 11, "name": "energy", "display_name": "Energía", "startup_count": 1 },
+  { "id": 12, "name": "healthtech", "display_name": "HealthTech", "startup_count": 1 },
+  { "id": 13, "name": "housing", "display_name": "Vivienda", "startup_count": 1 },
+  { "id": 14, "name": "hardware", "display_name": "Hardware", "startup_count": 1 },
+  { "id": 15, "name": "cleantech", "display_name": "CleanTech", "startup_count": 1 },
+  { "id": 16, "name": "telecom", "display_name": "Telecomunicaciones", "startup_count": 1 },
+  { "id": 17, "name": "e-commerce", "display_name": "E-Commerce", "startup_count": 1 },
+  { "id": 18, "name": "music", "display_name": "Música", "startup_count": 1 }
+]

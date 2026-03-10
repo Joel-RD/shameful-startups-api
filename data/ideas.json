@@ -1,0 +1,12 @@
+[
+  { "id": 1, "title": "Uber para perros", "episode": 1, "shame_level": 9, "status": "active" },
+  { "id": 2, "title": "Blockchain para sandwiches", "episode": 2, "shame_level": 10, "status": "active" },
+  { "id": 3, "title": "AI para generar excusas", "episode": 3, "shame_level": 7, "status": "active" },
+  { "id": 4, "title": "Instagram para gatos muertos", "episode": 4, "shame_level": 8, "status": "active" },
+  { "id": 5, "title": "Netflix pero solo de anuncios", "episode": 5, "shame_level": 6, "status": "active" },
+  { "id": 6, "title": "Uber pero para heces", "episode": 6, "shame_level": 10, "status": "active" },
+  { "id": 7, "title": "Crypto para resolver cubos de Rubik", "episode": 7, "shame_level": 9, "status": "active" },
+  { "id": 8, "title": "DAO para decidir qué ponerse", "episode": 8, "shame_level": 7, "status": "active" },
+  { "id": 9, "title": "Metaverso para reuniones de vecinos", "episode": 9, "shame_level": 8, "status": "active" },
+  { "id": 10, "title": "AI que genera nombres de bandas de rock", "episode": 10, "shame_level": 5, "status": "active" }
+]

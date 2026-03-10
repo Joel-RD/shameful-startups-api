@@ -1,0 +1,664 @@
+openapi: 3.0.0
+info:
+  title: Shameful Startups API
+  version: 1.0.0
+  description: "API RESTful de startups vergonzosas. Porque no todas las startups cambian el mundo. Documentación completa de endpoints, parámetros y códigos de respuesta."
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://localhost:3000
+    description: Servidor de desarrollo
+  - url: https://api.shameful-startups.com
+    description: Servidor de producción (en desarrollo)
+paths:
+  /api/startups:
+    get:
+      summary: Obtener todas las startups
+      description: "Devuelve una lista de startups con paginación y filtros por industria/shame level. Soporta paginación nativa con los parámetros `page` y `limit`."
+      parameters:
+        - name: page
+          in: query
+          description: "Número de página (default: 1)"
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          description: "Resultados por página (default: 10, máximo: 100)"
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+        - name: industry
+          in: query
+          description: "Filtrar por industria (ej: crypto, foodtech, fintech)"
+          schema:
+            type: string
+            example: "crypto"
+        - name: min_shame
+          in: query
+          description: "Filtrar por nivel de vergüenza mínimo (1-10)"
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            example: 8
+      responses:
+        '200':
+          description: "OK - Lista de startups con información de paginación"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartupListResponse'
+        '400':
+          description: "Bad Request - Parámetros de query inválidos"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+    post:
+      summary: Añadir una nueva startup
+      description: "Permite registrar un nuevo fracaso épico. Solo se aceptan ideas vergonzosas (shame_level >= 5 y sin palabras positivas como 'útil', 'exitoso', etc.)"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartupInput'
+            example:
+              name: "Theranos 2.0"
+              description: "La secuela que nadie pidió"
+              industry: "HealthTech"
+              funding: 0
+              shame_level: 8
+              founded: 2024
+              idea_real: "Tomar sangre con promesas vacías"
+      responses:
+        '201':
+          description: "Created - Startup creada exitosamente"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: { type: string }
+                  startup: { $ref: '#/components/schemas/Startup' }
+        '400':
+          description: "Bad Request - Campos requeridos faltantes"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '422':
+          description: "Unprocessable Entity - Startup demasiado buena para esta API (shame_level < 5 o contiene palabras positivas)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+                  message: { type: string }
+                  tip: { type: string }
+                example:
+                  error: "Esta startup es demasiado buena para esta API"
+                  message: "Lo sentimos, solo aceptamos ideas vergonzosas. Intenta con más cringe."
+                  tip: "Agrega más palabras como 'blockchain', 'AI', 'metaverso', o 'DAO'"
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/startups/random:
+    get:
+      summary: Startup aleatoria
+      description: "Devuelve una startup al azar para inspirarte (o deprimirte)."
+      responses:
+        '200':
+          description: "OK - Startup aleatoria"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: { type: string }
+                  startup: { $ref: '#/components/schemas/Startup' }
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/startups/top/shame:
+    get:
+      summary: Top vergüenza
+      description: "Devuelve las startups con mayor nivel de vergüenza, ordenadas descendientemente."
+      parameters:
+        - name: limit
+          in: query
+          description: "Número de resultados (default: 10, máximo: 50)"
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 50
+        - name: min_shame
+          in: query
+          description: "Filtrar por nivel mínimo de vergüenza"
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+      responses:
+        '200':
+          description: "OK - Lista de startups vergonzosas"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: { type: string }
+                  count: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Startup'
+        '400':
+          description: "Bad Request - Parámetros inválidos"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/startups/top/funding:
+    get:
+      summary: Top financiación
+      description: "Devuelve las startups con mayor financiación (ficticia), ordenadas descendientemente."
+      parameters:
+        - name: limit
+          in: query
+          description: "Número de resultados (default: 10, máximo: 50)"
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 50
+      responses:
+        '200':
+          description: "OK - Lista de startups por financiación"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: { type: string }
+                  total_funding: { type: string }
+                  count: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Startup'
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/startups/search:
+    get:
+      summary: Buscar startups
+      description: "Busca startups por nombre, descripción o idea. Soporta highlight de coincidencias."
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: "Término de búsqueda (busca en nombre, descripción e idea_real)"
+          schema:
+            type: string
+            minLength: 1
+            example: "blockchain"
+      responses:
+        '200':
+          description: "OK - Resultados de búsqueda"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: { type: string }
+                  query: { type: string }
+                  count: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: integer }
+                        name: { type: string }
+                        description: { type: string }
+                        industry: { type: string }
+                        founded: { type: integer }
+                        funding: { type: integer }
+                        shame_level: { type: integer }
+                        idea_real: { type: string }
+                        highlight:
+                          type: object
+                          properties:
+                            name: { type: string }
+                            description: { type: string }
+        '400':
+          description: "Bad Request - Parámetro de búsqueda requerido"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+                  example: { type: string }
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/startups/{id}:
+    get:
+      summary: Detalle de startup
+      description: "Obtiene los detalles de una startup específica por su ID."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "ID de la startup"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: "OK - Detalles de la startup"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Startup'
+        '404':
+          description: "Not Found - Startup no encontrada"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+                example:
+                  error: "Startup no encontrada"
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/industries:
+    get:
+      summary: Listar industrias
+      description: "Devuelve una lista de todas las industrias disponibles con el conteo de startups en cada una."
+      responses:
+        '200':
+          description: "OK - Lista de industrias"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: { type: integer }
+                  industries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name: { type: string }
+                        count: { type: integer }
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/founders:
+    get:
+      summary: Listar fundadores
+      description: "Devuelve una lista de todos los fundadores con sus startups asociadas."
+      responses:
+        '200':
+          description: "OK - Lista de fundadores"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Founder'
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/founders/{id}:
+    get:
+      summary: Detalle de fundador
+      description: "Obtiene los detalles de un fundador específico por su ID."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "ID del fundador"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: "OK - Detalles del fundador"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Founder'
+        '404':
+          description: "Not Found - Fundador no encontrado"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+                example:
+                  error: "Fundador no encontrado"
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/ideas:
+    get:
+      summary: Listar ideas (episodios)
+      description: "Devuelve una lista de todas las ideas/episodios disponibles."
+      responses:
+        '200':
+          description: "OK - Lista de ideas"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Idea'
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/ideas/{id}:
+    get:
+      summary: Detalle de idea
+      description: "Obtiene los detalles de una idea/episodio específico por su ID."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "ID de la idea"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: "OK - Detalles de la idea"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Idea'
+        '404':
+          description: "Not Found - Idea no encontrada"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+                example:
+                  error: "Idea no encontrada"
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/stats:
+    get:
+      summary: Estadísticas globales
+      description: "Devuelve estadísticas vergonzosas acumuladas sobre los fracasos: total de startups, financiación total ficticia y nivel promedio de vergüenza."
+      responses:
+        '200':
+          description: "OK - Estadísticas globales"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_startups: { type: integer }
+                  total_funding: { type: string }
+                  avg_shame_level: { type: number }
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/timeline:
+    get:
+      summary: Línea del tiempo de fracasos
+      description: "Devuelve las startups ordenadas por año de fundación (más recientes primero)."
+      responses:
+        '200':
+          description: "OK - Línea del tiempo"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Startup'
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api/health:
+    get:
+      summary: Verificación de salud
+      description: "Endpoint de health check para verificar que el servidor está funcionando."
+      responses:
+        '200':
+          description: "OK - Servidor funcionando"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string }
+                  uptime: { type: number }
+                  timestamp: { type: string }
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+  /api:
+    get:
+      summary: Información de la API
+      description: "Devuelve información general sobre la API: versión, descripción y links útiles."
+      responses:
+        '200':
+          description: "OK - Información de la API"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name: { type: string }
+                  version: { type: string }
+                  description: { type: string }
+                  endpoints: { type: integer }
+        '429':
+          description: "Too Many Requests - Límite de rate limiting excedido"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+components:
+  schemas:
+    Startup:
+      type: object
+      properties:
+        id: { type: integer, description: "ID único de la startup" }
+        name: { type: string, description: "Nombre de la startup" }
+        description: { type: string, description: "Descripción de la idea" }
+        industry: { type: string, description: "Industria (ej: crypto, fintech, etc.)" }
+        founded: { type: integer, description: "Año de fundación" }
+        funding: { type: integer, description: "Funding ficticio en USD" }
+        shame_level: { type: integer, description: "Nivel de vergüenza (1-10)", minimum: 1, maximum: 10 }
+        idea_real: { type: string, description: "La idea real detrás de la startup" }
+        founders:
+          type: array
+          items:
+            type: integer
+          description: "IDs de los fundadores"
+    StartupInput:
+      type: object
+      required:
+        - name
+        - description
+        - industry
+        - shame_level
+        - founded
+      properties:
+        name:
+          type: string
+          description: "Nombre de la startup"
+          example: "Blockchain para sandwiches"
+        description:
+          type: string
+          description: "Descripción de la idea vergonzosa"
+          example: "Tus sandwiches ahora en la blockchain"
+        industry:
+          type: string
+          description: "Industria de la startup"
+          example: "FoodTech"
+        funding:
+          type: integer
+          description: "Funding ficticio (default: 0)"
+          default: 0
+          example: 0
+        shame_level:
+          type: integer
+          description: "Nivel de vergüenza (1-10, mínimo 5 para ser aceptada)"
+          minimum: 1
+          maximum: 10
+          example: 10
+        founded:
+          type: integer
+          description: "Año de fundación"
+          example: 2024
+        idea_real:
+          type: string
+          description: "La idea real (o más尴尬)"
+          example: "Poner QR codes en sandwiches"
+    StartupListResponse:
+      type: object
+      properties:
+        info:
+          type: object
+          properties:
+            count: { type: integer, description: "Total de resultados" }
+            pages: { type: integer, description: "Total de páginas" }
+            next: { type: string, nullable: true, description: "URL de siguiente página" }
+            prev: { type: string, nullable: true, description: "URL de página anterior" }
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Startup'
+    Founder:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        bio: { type: string }
+        startups:
+          type: array
+          items:
+            type: integer
+    Idea:
+      type: object
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        description: { type: string }
+        shame_level: { type: integer }
+    ErrorResponse:
+      type: object
+      properties:
+        error: { type: string, description: "Tipo de error" }
+      example:
+        error: "Invalid parameter"
+    ValidationError:
+      type: object
+      properties:
+        error: { type: string }
+        missing_fields:
+          type: array
+          items:
+            type: string
+      example:
+        error: "Campos requeridos faltantes"
+        missing_fields:
+          - "name es requerido"
+          - "shame_level es requerido"
+    RateLimitError:
+      type: object
+      properties:
+        error: { type: string }
+        message: { type: string }
+        retryAfter: { type: integer }
+      example:
+        error: "Demasiadas solicitudes"
+        message: "Límite: 100 requests por minuto"
+        retryAfter: 42
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
