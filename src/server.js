@@ -17,7 +17,7 @@ app.use(securityMiddleware);
 app.use('/api', createRateLimitMiddleware());
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use("/static", express.static(path.join(__dirname, 'public')));
 
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
