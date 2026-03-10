@@ -1,15 +1,15 @@
 const express = require('express');
 const path = require('path');
 
-const config = require('./src/config');
-const { securityMiddleware, createRateLimitMiddleware } = require('./src/middleware/security');
-const { errorHandler, notFoundHandler } = require('./src/middleware/errorHandler');
-const statsController = require('./src/controllers/statsController');
+const config = require('./config');
+const { securityMiddleware, createRateLimitMiddleware } = require('./middleware/security');
+const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
+const statsController = require('./controllers/statsController');
 
-const startupsRouter = require('./src/routes/startups');
-const industriesRouter = require('./src/routes/industries');
-const foundersRouter = require('./src/routes/founders');
-const ideasRouter = require('./src/routes/ideas');
+const startupsRouter = require('./routes/startups');
+const industriesRouter = require('./routes/industries');
+const foundersRouter = require('./routes/founders');
+const ideasRouter = require('./routes/ideas');
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(express.static('public'));
 
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
+const swaggerDocument = YAML.load(path.join(__dirname, '../swagger.yaml'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/startups', startupsRouter);
